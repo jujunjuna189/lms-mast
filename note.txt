@@ -1,0 +1,16 @@
+Pembayaran
+- SPP
+
+Pendaftaran Siswa
+- Anak Baru
+- Anak yang sudah ada
+
+persetujuan admin
+halaman admin daftar siswa
+- siswa baru -> halaman admin -> follow up admin
+- sudah masuk sekolah -> halaman admin
+
+siswa
+admin 
+- Akademik
+- keuangan
