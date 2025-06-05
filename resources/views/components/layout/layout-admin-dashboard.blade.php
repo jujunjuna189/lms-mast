@@ -18,9 +18,9 @@
                     </div>
                 </div>
                 <div class="flex flex-col">
-                    <div class="grow">
+                    <div class="grow leading-3">
                         <h2 class="text-white text-xl font-bold">MASTERPAK</h2>
-                        <small>Mas Terpadu Pakunagara</small>
+                        <small class="text-white">Mas Terpadu Pakunagara</small>
                     </div>
                 </div>
             </div>
