@@ -9,6 +9,11 @@ class ScheduleModel extends Model
     protected $table = 'schedule';
     protected $guarded = ['id'];
 
+    public function class()
+    {
+        return $this->hasOne(ClassModel::class, 'id', 'class_id');
+    }
+
     public function subject()
     {
         return $this->hasOne(SubjectModel::class, 'id', 'subject_id');

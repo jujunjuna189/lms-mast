@@ -6,18 +6,30 @@
 </div>
 <div class="bg-white p-4 border border-slate-200 rounded-sm">
     <div class="flex justify-between items-center">
-        <p class="text-base font-medium">Jadwal Hari Senin</p>
+        <p class="text-base font-medium">Jadwal: <span class="text-green-800">{{$filter['day']}}<span></p>
         <div class="flex items-center gap-4">
             <label for="filterHari" class="text-sm font-medium">Pilih Hari:</label>
-            <select id="filterHari" name="filterHari" class="border w-40 rounded border-slate-300 px-3 py-1 ring-0">
-                <option>Semua</option>
-                <option>Senin</option>
-                <option>Selasa</option>
-                <option>Rabu</option>
-                <option>Kamis</option>
-                <option>Jumat</option>
-                <option>Sabtu</option>
+            <select id="filterHari" name="filterHari"
+                class="border w-40 rounded border-slate-300 px-3 py-1 ring-0"
+                onchange="window.location.href = '<?= url('admin/schedule') ?><?= $filter['class'] != 'Semua' ? '?class=' . $filter['class'] . '&' : '?' ?>' + (this.value ? 'day=' + this.value : '')">
+                <option value="">Semua</option>
+                <option value="Senin" <?= $filter['day'] == 'Senin' ? 'selected' : '' ?>>Senin</option>
+                <option value="Selasa" <?= $filter['day'] == 'Selasa' ? 'selected' : '' ?>>Selasa</option>
+                <option value="Rabu" <?= $filter['day'] == 'Rabu' ? 'selected' : '' ?>>Rabu</option>
+                <option value="Kamis" <?= $filter['day'] == 'Kamis' ? 'selected' : '' ?>>Kamis</option>
+                <option value="Jumat" <?= $filter['day'] == 'Jumat' ? 'selected' : '' ?>>Jumat</option>
+                <option value="Sabtu" <?= $filter['day'] == 'Sabtu' ? 'selected' : '' ?>>Sabtu</option>
             </select>
+            <label for="filterKelas" class="text-sm font-medium">Pilih Kelas:</label>
+            <select id="filterKelas" name="filterKelas"
+                class="border w-40 rounded border-slate-300 px-3 py-1 ring-0"
+                onchange="window.location.href = '<?= url('admin/schedule') ?><?= $filter['day'] != 'Semua' ? '?day=' . $filter['day'] . '&' : '?' ?>' + (this.value ? 'class=' + this.value : '')">
+                <option value="">Semua</option>
+                @foreach($class as $key => $val)
+                <option value="{{ $key }}" <?= $filter['class'] == $key ? 'selected' : '' ?>>{{ $val }}</option>
+                @endforeach
+            </select>
+
             <button type="button" class="cursor-pointer inline-block bg-green-800 hover:bg-green-700 text-white px-4 py-1 rounded-sm font-medium text-sm transition open-modal" data-id="modalTambahJadwal">Tambah</button>
         </div>
     </div>
@@ -25,9 +37,12 @@
         <table class="min-w-full table-auto text-sm text-left">
             <thead class="bg-slate-200 text-sm sticky top-0 z-10">
                 <tr>
+                    <th class="px-5 py-3 font-semibold">#</th>
+                    <th class="px-5 py-3 font-semibold">Hari</th>
                     <th class="px-5 py-3 font-semibold">Jam</th>
                     <th class="px-5 py-3 font-semibold">Mata Pelajaran</th>
                     <th class="px-5 py-3 font-semibold">Guru</th>
+                    <th class="px-5 py-3 font-semibold text-center">Kelas</th>
                     <th class="px-5 py-3 font-semibold text-center">Ruangan</th>
                     <th class="px-6 py-3 font-semibold text-center">Aksi</th>
                 </tr>
@@ -35,9 +50,12 @@
             <tbody class="divide-y divide-gray-200">
                 @foreach($schedule as $index => $val)
                 <tr class="hover:bg-gray-50">
+                    <td class="px-5 py-1.5">{{ $index + 1 }}</td>
+                    <td class="px-5 py-1.5">{{ $val->day }}</td>
                     <td class="px-5 py-1.5 font-medium">{{ $val->time_from }} – {{ $val->time_to }}</td>
                     <td class="px-5 py-1.5">{{ $val->subject->title }}</td>
                     <td class="px-5 py-1.5">{{ $val->teacher }}</td>
+                    <td class="px-5 py-1.5 text-center">{{ $val->class->name }}</td>
                     <td class="px-5 py-1.5 text-center">{{ $val->room->title }}</td>
                     <td class="px-6 py-1.5 text-center">
                         <button type="button" class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-1 rounded-sm font-medium text-sm transition cursor-pointer btn-update" data-class='@json($val)'>Edit</button>
@@ -83,6 +101,13 @@
             required />
 
         <x-field.text-input name="teacher" label="Guru" required />
+
+        <x-field.select-input
+            name="class_id"
+            label="Pilih Kelas"
+            :options="$class"
+            placeholder="-- Pilih Kelas --"
+            required />
 
         <x-field.select-input
             name="room_id"
@@ -133,6 +158,13 @@
         <x-field.text-input name="teacher" label="Guru" required />
 
         <x-field.select-input
+            name="class_id"
+            label="Pilih Kelas"
+            :options="$class"
+            placeholder="-- Pilih Kelas --"
+            required />
+
+        <x-field.select-input
             name="room_id"
             label="Pilih Ruangan"
             :options="$room"
@@ -172,6 +204,7 @@
         $('#formEditJadwal input[name="time_to"]').val(data.time_to);
         $('#formEditJadwal select[name="subject_id"]').val(data.subject_id);
         $('#formEditJadwal input[name="teacher"]').val(data.teacher);
+        $('#formEditJadwal select[name="class_id"]').val(data.class_id);
         $('#formEditJadwal select[name="room_id"]').val(data.room_id);
 
         $('#modalEditJadwal').removeClass('hidden').addClass('flex');
