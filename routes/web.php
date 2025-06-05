@@ -38,6 +38,11 @@ Route::get('admin/dashboard', function () {
     return view('admin/dashboard/dashboard');
 })->name('admin.dashboard');
 
+Route::get('admin/student', [App\Http\Controllers\Admin\StudentController::class, 'index'])->name('admin.student');
+Route::post('admin/student', [App\Http\Controllers\Admin\StudentController::class, 'create'])->name('admin.student.create');
+Route::post('admin/student/{id}', [App\Http\Controllers\Admin\StudentController::class, 'update'])->name('admin.student.update');
+Route::delete('admin/student/{id}', [App\Http\Controllers\Admin\StudentController::class, 'delete'])->name('admin.student.delete');
+
 Route::get('admin/class', [App\Http\Controllers\Admin\ClassController::class, 'index'])->name('admin.class');
 Route::post('admin/class', [App\Http\Controllers\Admin\ClassController::class, 'create'])->name('admin.class.create');
 Route::post('admin/class/{id}', [App\Http\Controllers\Admin\ClassController::class, 'update'])->name('admin.class.update');

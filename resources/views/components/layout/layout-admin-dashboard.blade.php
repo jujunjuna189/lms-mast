@@ -43,6 +43,9 @@
         <aside class="w-60 h-full bg-white border border-slate-200 hidden md:block fixed top-0 bottom-0">
             <nav class="pt-20">
                 <div class="block px-4 py-2 hover:bg-gray-200 text-sm font-semibold cursor-pointer">Dashboard</div>
+                <hr class="border border-slate-200" />
+                <div class="block px-4 py-2 hover:bg-gray-200 text-sm font-semibold cursor-pointer" onclick="window.location.href='<?= route('admin.student') ?>'">Siswa</div>
+                <hr class="border border-slate-200" />
                 <div class="block px-4 py-2 hover:bg-gray-200 text-sm font-semibold cursor-pointer" onclick="window.location.href='<?= route('admin.class') ?>'">Kelas</div>
                 <div class="block px-4 py-2 hover:bg-gray-200 text-sm font-semibold cursor-pointer" onclick="window.location.href='<?= route('admin.subject') ?>'">Mata Pelajaran</div>
                 <div class="block px-4 py-2 hover:bg-gray-200 text-sm font-semibold cursor-pointer" onclick="window.location.href='<?= route('admin.schedule') ?>'">Jadwal Kelas</div>
@@ -52,8 +55,6 @@
                 <div class="block px-4 py-2 hover:bg-gray-200 text-sm font-semibold cursor-pointer" onclick="window.location.href='<?= route('admin.forum') ?>'">Forum Diskusi</div>
                 <hr class="border border-slate-200" />
                 <div class="block px-4 py-2 hover:bg-gray-200 text-sm font-semibold cursor-pointer" onclick="window.location.href='<?= route('admin.forum') ?>'">Keuangan</div>
-                <hr class="border border-slate-200" />
-                <div class="block px-4 py-2 hover:bg-gray-200 text-sm font-semibold cursor-pointer" onclick="window.location.href='<?= route('admin.class') ?>'">Siswa</div>
             </nav>
         </aside>
         <div class="w-60"></div>
