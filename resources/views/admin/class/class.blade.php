@@ -29,6 +29,7 @@
                     <td class="px-6 py-1.5">{{ $val->name }}</td>
                     <td class="px-6 py-1.5">{{ $val->class_teacher }}</td>
                     <td class="px-6 py-1.5 text-center">
+                        <a href="{{ route('admin.student.class', ['class_id' => $val->id]) }}" class="inline-block bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded-sm font-medium text-sm transition cursor-pointer btn-update">Lihat Siswa</a>
                         <button type="button" class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-1 rounded-sm font-medium text-sm transition cursor-pointer btn-update" data-class='@json($val)'>Edit</button>
                         <button type="button" class="inline-block bg-red-600 hover:bg-red-700 text-white px-4 py-1 ml-1 rounded-sm font-medium text-sm transition cursor-pointer btn-delete" data-id='{{ $val->id }}'>Hapus</button>
                     </td>
