@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\ClassModel;
 use App\Models\Admin\CourseworkModel;
 use App\Models\Admin\SubjectModel;
 use Illuminate\Http\Request;
@@ -13,13 +14,20 @@ class CourseWorkController extends Controller
     {
         $subject = SubjectModel::all();
         $coursework = CourseworkModel::all();
+        $class = ClassModel::all();
 
         $subjects = [];
         foreach ($subject as $val) {
             $subjects[$val->id] = $val->title;
         }
 
+        $classs = [];
+        foreach ($class as $val) {
+            $classs[$val->id] = $val->name;
+        }
+
         $data['subject'] = $subjects;
+        $data['class'] = $classs;
         $data['coursework'] = $coursework;
 
         return view('admin.coursework.coursework', $data);

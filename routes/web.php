@@ -43,6 +43,8 @@ Route::post('admin/student/class', [App\Http\Controllers\Admin\StudentClassContr
 Route::post('admin/student/class/{id}', [App\Http\Controllers\Admin\StudentClassController::class, 'update'])->name('admin.student.class.update');
 Route::delete('admin/student/class/{id}', [App\Http\Controllers\Admin\StudentClassController::class, 'delete'])->name('admin.student.class.delete');
 
+Route::get('admin/student/coursework', [App\Http\Controllers\Admin\StudentCourseworkController::class, 'index'])->name('admin.student.coursework');
+
 Route::get('admin/student', [App\Http\Controllers\Admin\StudentController::class, 'index'])->name('admin.student');
 Route::post('admin/student', [App\Http\Controllers\Admin\StudentController::class, 'create'])->name('admin.student.create');
 Route::post('admin/student/{id}', [App\Http\Controllers\Admin\StudentController::class, 'update'])->name('admin.student.update');

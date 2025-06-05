@@ -14,6 +14,7 @@
                 <tr>
                     <th class="px-6 py-3 font-semibold">#</th>
                     <th class="px-6 py-3 font-semibold">Judul</th>
+                    <th class="px-5 py-3 font-semibold">Kelas</th>
                     <th class="px-6 py-3 font-semibold">Mata Pelajaran</th>
                     <th class="px-6 py-3 font-semibold text-center">Jenis</th>
                     <th class="px-6 py-3 font-semibold text-center">Deadline</th>
@@ -25,10 +26,12 @@
                 <tr class="hover:bg-gray-50">
                     <td class="px-6 py-1.5">{{ $index + 1 }}</td>
                     <td class="px-6 py-1.5 font-medium">{{ $val->title }}</td>
+                    <td class="px-5 py-1.5">{{ $val->class->name }}</td>
                     <td class="px-6 py-1.5">{{ $val->subject->title }}</td>
                     <td class="px-6 py-1.5 text-center">{{ $val->type }}</td>
                     <td class="px-6 py-1.5 text-center">{{ $val->deadline }}</td>
                     <td class="px-6 py-1.5 text-center">
+                        <a href="{{ route('admin.student.coursework', ['coursework_id' => $val->id]) }}" class="inline-block bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded-sm font-medium text-sm transition cursor-pointer">Pengerjaan</a>
                         <button type="button" class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-1 rounded-sm font-medium text-sm transition cursor-pointer btn-update" data-class='@json($val)'>Edit</button>
                         <button type="button" class="inline-block bg-red-600 hover:bg-red-700 text-white px-4 py-1 ml-1 rounded-sm font-medium text-sm transition cursor-pointer btn-delete" data-id='{{ $val->id }}'>Hapus</button>
                     </td>
@@ -55,6 +58,13 @@
         <x-field.text-input name="deadline" label="Deadline" type="date" required />
 
         <x-field.select-input
+            name="class_id"
+            label="Pilih Kelas"
+            :options="$class"
+            placeholder="-- Pilih Kelas --"
+            required />
+
+        <x-field.select-input
             name="subject_id"
             label="Pilih Mata Pelajaran"
             :options="$subject"
@@ -65,9 +75,8 @@
             name="status"
             label="Pilih Status"
             :options="[
-                'Belum Dikerjakan' => 'Belum Dikerjakan',
-                'Selesai' => 'Selesai',
-                'Terlambat' => 'Terlambat',
+                'Dibuka' => 'Dibuka',
+                'Ditutup' => 'Ditutup',
             ]"
             placeholder="-- Pilih Status --"
             required />
@@ -93,6 +102,13 @@
             required />
 
         <x-field.text-input name="deadline" label="Deadline" type="date" required />
+
+        <x-field.select-input
+            name="class_id"
+            label="Pilih Kelas"
+            :options="$class"
+            placeholder="-- Pilih Kelas --"
+            required />
 
         <x-field.select-input
             name="subject_id"
@@ -142,6 +158,7 @@
         $('#formEditTugas input[name="title"]').val(data.title);
         $('#formEditTugas select[name="type"]').val(data.type);
         $('#formEditTugas input[name="deadline"]').val(data.deadline);
+        $('#formEditTugas select[name="class_id"]').val(data.class_id);
         $('#formEditTugas select[name="subject_id"]').val(data.subject_id);
         $('#formEditTugas select[name="status"]').val(data.status);
 
