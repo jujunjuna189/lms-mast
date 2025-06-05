@@ -53,6 +53,11 @@ Route::post('admin/class', [App\Http\Controllers\Admin\ClassController::class, '
 Route::post('admin/class/{id}', [App\Http\Controllers\Admin\ClassController::class, 'update'])->name('admin.class.update');
 Route::delete('admin/class/{id}', [App\Http\Controllers\Admin\ClassController::class, 'delete'])->name('admin.class.delete');
 
+Route::get('admin/subject/class', [App\Http\Controllers\Admin\SubjectClassController::class, 'index'])->name('admin.subject.class');
+Route::post('admin/subject/class', [App\Http\Controllers\Admin\SubjectClassController::class, 'create'])->name('admin.subject.class.create');
+Route::post('admin/subject/class/{id}', [App\Http\Controllers\Admin\SubjectClassController::class, 'update'])->name('admin.subject.class.update');
+Route::delete('admin/subject/class/{id}', [App\Http\Controllers\Admin\SubjectClassController::class, 'delete'])->name('admin.subject.class.delete');
+
 Route::get('admin/subject', [App\Http\Controllers\Admin\SubjectController::class, 'index'])->name('admin.subject');
 Route::post('admin/subject', [App\Http\Controllers\Admin\SubjectController::class, 'create'])->name('admin.subject.create');
 Route::post('admin/subject/{id}', [App\Http\Controllers\Admin\SubjectController::class, 'update'])->name('admin.subject.update');

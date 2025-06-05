@@ -44,10 +44,13 @@
             <nav class="pt-20">
                 <div class="block px-4 py-2 hover:bg-gray-200 text-sm font-semibold cursor-pointer">Dashboard</div>
                 <hr class="border border-slate-200" />
+                <div class="px-4">
+                    <small class="text-[11px] font-bold text-green-800/70">DATA MASTER</small>
+                </div>
+                <div class="block px-4 py-2 hover:bg-gray-200 text-sm font-semibold cursor-pointer" onclick="window.location.href='<?= route('admin.subject') ?>'">Mata Pelajaran</div>
                 <div class="block px-4 py-2 hover:bg-gray-200 text-sm font-semibold cursor-pointer" onclick="window.location.href='<?= route('admin.student') ?>'">Siswa</div>
                 <hr class="border border-slate-200" />
                 <div class="block px-4 py-2 hover:bg-gray-200 text-sm font-semibold cursor-pointer" onclick="window.location.href='<?= route('admin.class') ?>'">Kelas</div>
-                <div class="block px-4 py-2 hover:bg-gray-200 text-sm font-semibold cursor-pointer" onclick="window.location.href='<?= route('admin.subject') ?>'">Mata Pelajaran</div>
                 <div class="block px-4 py-2 hover:bg-gray-200 text-sm font-semibold cursor-pointer" onclick="window.location.href='<?= route('admin.schedule') ?>'">Jadwal Kelas</div>
                 <div class="block px-4 py-2 hover:bg-gray-200 text-sm font-semibold cursor-pointer" onclick="window.location.href='<?= route('admin.coursework') ?>'">Tugas & Ujian</div>
                 <hr class="border border-slate-200" />
