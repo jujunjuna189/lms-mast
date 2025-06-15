@@ -95,7 +95,7 @@ Route::post('admin/spp', [App\Http\Controllers\Admin\SPPController::class, 'crea
 Route::post('admin/spp/{id}', [App\Http\Controllers\Admin\SPPController::class, 'update'])->name('admin.spp.update');
 Route::delete('admin/spp/{id}', [App\Http\Controllers\Admin\SPPController::class, 'delete'])->name('admin.spp.delete');
 
-Route::get('admin/spp/payment', [App\Http\Controllers\Admin\SPPController::class, 'index'])->name('admin.spp.payment');
-Route::post('admin/spp/payment', [App\Http\Controllers\Admin\SPPController::class, 'create'])->name('admin.spp.payment.create');
-Route::post('admin/spp/payment/{id}', [App\Http\Controllers\Admin\SPPController::class, 'update'])->name('admin.spp.payment.update');
-Route::delete('admin/spp/payment/{id}', [App\Http\Controllers\Admin\SPPController::class, 'delete'])->name('admin.spp.payment.delete');
+Route::get('admin/spp/payment', [App\Http\Controllers\Admin\SPPPaymentController::class, 'index'])->name('admin.spp.payment');
+Route::post('admin/spp/payment', [App\Http\Controllers\Admin\SPPPaymentController::class, 'create'])->name('admin.spp.payment.create');
+Route::post('admin/spp/payment/{id}', [App\Http\Controllers\Admin\SPPPaymentController::class, 'update'])->name('admin.spp.payment.update');
+Route::delete('admin/spp/payment/{id}', [App\Http\Controllers\Admin\SPPPaymentController::class, 'delete'])->name('admin.spp.payment.delete');
