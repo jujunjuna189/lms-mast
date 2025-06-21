@@ -59,6 +59,7 @@
                 </div>
                 @endforeach
             </div>
+            <a href="{{ route('admin.spp.detail', ['user_id' => $user->id]) }}" class="text-sm text-blue-500 underline">Lihat Pembayaran SPP Siswa</a>
         </div>
     </div>
     <div class="grow">

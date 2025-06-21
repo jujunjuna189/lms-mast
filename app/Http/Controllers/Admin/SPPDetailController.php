@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\SPPHistoryModel;
 use App\Models\Admin\SPPModel;
 use App\Models\Admin\StudentModel;
 use App\Models\User;
@@ -15,10 +16,12 @@ class SPPDetailController extends Controller
         $user = User::find($request->user_id);
         $student = StudentModel::where('user_id', $request->user_id)->first();
         $spp = SPPModel::where('user_id', $request->user_id)->first();
+        $history = SPPHistoryModel::where('user_id', $request->user_id)->get();
 
         $data['user'] = $user;
         $data['student'] = $student;
         $data['spp'] = $spp;
+        $data['history'] = $history;
 
         return view('admin.spp.spp-detail', $data);
     }

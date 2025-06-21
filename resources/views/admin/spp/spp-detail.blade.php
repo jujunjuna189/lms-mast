@@ -52,10 +52,22 @@
             <tr>
                 <th class="px-6 py-3 font-semibold">#</th>
                 <th class="px-6 py-3 font-semibold">Tanggal</th>
+                <th class="px-6 py-3 font-semibold">Waktu</th>
                 <th class="px-6 py-3 font-semibold">Jumlah</th>
-                <th class="px-6 py-3 font-semibold text-center">Aksi</th>
+                <!-- <th class="px-6 py-3 font-semibold text-center">Aksi</th> -->
             </tr>
         </thead>
+        <tbody>
+            @foreach($history as $index => $val)
+            <tr>
+                <td class="px-6 py-1.5">{{ $index + 1 }}</td>
+                <td class="px-6 py-1.5 font-medium">{{ $val->date }}</td>
+                <td class="px-6 py-1.5 font-medium">{{ $val->time }}</td>
+                <td class="px-5 py-1.5">Rp {{ $val->amount }}</td>
+                <!-- <td class="px-6 py-1.5"></td> -->
+            </tr>
+            @endforeach
+        </tbody>
     </table>
 </div>
 <!-- Modal -->
