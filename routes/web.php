@@ -87,8 +87,6 @@ Route::delete('admin/forum/{id}', [App\Http\Controllers\Admin\ForumController::c
 
 Route::get('admin/spp/detail', [App\Http\Controllers\Admin\SPPDetailController::class, 'index'])->name('admin.spp.detail');
 Route::post('admin/spp/detail', [App\Http\Controllers\Admin\SPPDetailController::class, 'create'])->name('admin.spp.detail.create');
-Route::post('admin/spp/detail/{id}', [App\Http\Controllers\Admin\SPPDetailController::class, 'update'])->name('admin.spp.detail.update');
-Route::delete('admin/spp/detail/{id}', [App\Http\Controllers\Admin\SPPDetailController::class, 'delete'])->name('admin.spp.detail.delete');
 
 Route::get('admin/spp', [App\Http\Controllers\Admin\SPPController::class, 'index'])->name('admin.spp');
 Route::post('admin/spp', [App\Http\Controllers\Admin\SPPController::class, 'create'])->name('admin.spp.create');

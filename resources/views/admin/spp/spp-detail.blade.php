@@ -11,19 +11,19 @@
             <tbody>
                 <tr>
                     <td class="text-start w-56 text-slate-600 py-1">Nama Lengkap</td>
-                    <td>: Nama Saya</td>
+                    <td>: {{ $user->name }}</td>
                 </tr>
                 <tr>
                     <td class="text-start w-56 text-slate-600 py-1">Username</td>
-                    <td>: Username</td>
+                    <td>: {{ $user->email }}</td>
                 </tr>
                 <tr>
                     <td class="text-start w-56 text-slate-600 py-1">Tingkat</td>
-                    <td>: X</td>
+                    <td>: {{ $student->grade->title }}</td>
                 </tr>
                 <tr>
                     <td class="text-start w-56 text-slate-600 py-1">Jurusan</td>
-                    <td>: Informatika</td>
+                    <td>: {{ $student->major->title }}</td>
                 </tr>
             </tbody>
         </table>
@@ -32,7 +32,17 @@
 <div class="bg-white p-4 border border-slate-200 rounded-sm mt-2">
     <h2 class="text-center">Total SPP Yang Belum Dibayar</h2>
     <div class="mt-2 text-center">
-        <label for="amount" class="font-bold text-2xl">Rp 20.000</label>
+        <div class="flex gap-2 justify-center items-center">
+            <label for="amount" class="font-bold text-2xl" data-spp="{{ $spp }}">Rp {{ $spp->amount ?? '0' }}</label>
+            <div class="bg-blue-600 hover:bg-blue-700 py-1 px-2 rounded-sm text-white flex items-center gap-1 cursor-pointer open-modal" data-id="modalEditSPP">
+                <svg xmlns=" http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-pencil">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+                    <path d="M13.5 6.5l4 4" />
+                </svg>
+                Edit
+            </div>
+        </div>
     </div>
 </div>
 <div class="bg-white p-4 border border-slate-200 rounded-sm mt-2">
@@ -48,4 +58,17 @@
         </thead>
     </table>
 </div>
+<!-- Modal -->
+<x-modal id="modalEditSPP" title="Edit SPP">
+    <form id="formEditSPP" action="{{ route('admin.spp.detail.create') }}" method="POST">
+        @csrf
+        <input type="text" name="user_id" value="{{ $user->id }}" hidden>
+
+        <x-field.text-input name="amount" label="Nominal" type="number" value="{{ $spp->amount ?? '' }}" required />
+
+        <x-slot:footer>
+            <button form="formEditSPP" type="submit" class="bg-green-800 text-white px-4 py-1 rounded hover:bg-green-700 cursor-pointer">Simpan</button>
+        </x-slot:footer>
+    </form>
+</x-modal>
 @endsection

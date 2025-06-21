@@ -13,6 +13,7 @@
             <thead class="bg-slate-200 text-sm sticky top-0 z-10">
                 <tr>
                     <th class="px-6 py-3 font-semibold">#</th>
+                    <th class="px-6 py-3 font-semibold">Username</th>
                     <th class="px-6 py-3 font-semibold">Nama Lengkap</th>
                     <th class="px-6 py-3 font-semibold">Tingkat</th>
                     <th class="px-6 py-3 font-semibold">Jurusan</th>
@@ -23,6 +24,7 @@
                 @foreach($student as $index => $val)
                 <tr class="hover:bg-gray-100">
                     <td class="px-6 py-1.5">{{ $index + 1 }}</td>
+                    <td class="px-6 py-1.5">{{ $val->user->email }}</td>
                     <td class="px-6 py-1.5">{{ $val->user->name }}</td>
                     <td class="px-6 py-1.5">{{ $val->grade->title }}</td>
                     <td class="px-6 py-1.5">{{ $val->major->title }}</td>
