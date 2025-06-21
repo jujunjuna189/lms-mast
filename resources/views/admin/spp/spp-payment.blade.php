@@ -50,31 +50,47 @@
         <div class="bg-white px-4 py-5 border border-slate-200 rounded-sm mt-2">
             <h2 class="font-semibold">Riwayat SPP</h2>
             <div class="mt-2">
-
+                @foreach($history as $val)
+                <div class="py-1">
+                    <div class="px-4 py-2 rounded-md bg-slate-100 text-slate-600">
+                        <p class="text-lg font-bold">Rp {{ $val->amount }}</p>
+                        <small>Tanggal Pembayaran: {{ $val->date }}</small>
+                    </div>
+                </div>
+                @endforeach
             </div>
         </div>
     </div>
     <div class="grow">
         <div class="bg-white px-4 py-5 border border-slate-200 rounded-sm mt-2">
-            <h2 class="font-semibold">Bayar SPP</h2>
-            <div class="mt-2">
-                <x-field.text-input name="deadline" label="Tanggal Pembayaran" type="date" required />
-            </div>
-            <div class="flex gap-4">
-                <div class="mt-1">
-                    <label for="" class="text-sm">Jumlah Yang Harus Dibayar</label>
-                    <div class="px-4 py-2 rounded-md bg-green-100 text-green-600 text-lg font-bold">Rp 2000</div>
+            <form action="{{ route('admin.spp.payment.create') }}" method="post">
+                @csrf
+                <h2 class="font-semibold">Bayar SPP</h2>
+                <input type="text" name="user_id" value="{{ $user->id }}" hidden>
+                <input type="text" name="username" value="{{ $user->email }}" hidden>
+
+                <div class="mt-2 flex gap-3">
+                    <div class="grow">
+                        <x-field.text-input name="date" label="Tanggal Pembayaran" :value="old('date', now()->format('Y-m-d'))" type="date" required />
+                    </div>
+                    <x-field.text-input name="time" label="Waktu Pembayaran" type="time" required :value="old('time', now()->format('H:i'))" />
                 </div>
-                <div class="mt-2 grow">
-                    <x-field.text-input name="deadline" label="Masukan Nominal Uang Yang Dibayarkan" required />
+                <div class="flex gap-4">
+                    <div class="mt-1">
+                        <label for="" class="text-sm">Jumlah Yang Harus Dibayar</label>
+                        <div class="px-4 py-2 rounded-md bg-green-100 text-green-600 text-lg font-bold">Rp {{ $spp->amount ?? '0' }}</div>
+                    </div>
+                    <div class="mt-2 grow">
+                        <x-field.text-input name="amount" label="Masukan Nominal Uang Yang Dibayarkan" type="number" required />
+                    </div>
                 </div>
-            </div>
-            <div class="mt-2">
-                <textarea name="" id="" cols="30" rows="5" placeholder="Masukan Catatan Pembayaran Disini..." class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-sm"></textarea>
-            </div>
-            <div class="flex justify-end mt-3">
-                <button type="submit" class="bg-green-800 w-full text-white font-bold px-4 py-2 rounded hover:bg-green-700 cursor-pointer">Bayar</button>
-            </div>
+                <div class="mt-2">
+                    <textarea name="note" id="note" cols="30" rows="5" placeholder="Masukan Catatan Pembayaran Disini..." class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-sm"></textarea>
+                </div>
+                <div class="flex justify-end mt-3">
+                    <button type="submit" class="bg-green-800 w-full text-white font-bold px-4 py-2 rounded hover:bg-green-700 cursor-pointer">Bayar</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
