@@ -65,4 +65,13 @@ class AuthController extends Controller
             'user' => $user
         ], 201);
     }
+
+    public function logout()
+    {
+        Auth::logout(); // keluar dari sesi
+        request()->session()->invalidate(); // hapus sesi
+        request()->session()->regenerateToken(); // regenerasi CSRF token
+
+        return redirect()->route('login'); // arahkan ke halaman login
+    }
 }
