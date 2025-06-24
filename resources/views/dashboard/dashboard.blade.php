@@ -6,6 +6,31 @@
         <p class="text-xl font-bold text-slate-800">MAST Pakunagara</p>
     </div>
 </div>
+<div class="bg-white p-4 border border-slate-200 rounded-sm mt-2">
+    <h2 class="font-bold">Biodata</h2>
+    <div class="mt-2">
+        <table>
+            <tbody>
+                <tr>
+                    <td class="text-start w-56 text-slate-600 py-1">Nama Lengkap</td>
+                    <td>: {{ $user->name }}</td>
+                </tr>
+                <tr>
+                    <td class="text-start w-56 text-slate-600 py-1">Username</td>
+                    <td>: {{ $user->email }}</td>
+                </tr>
+                <tr>
+                    <td class="text-start w-56 text-slate-600 py-1">Tingkat</td>
+                    <td>: {{ $student->grade->title ?? '-' }}</td>
+                </tr>
+                <tr>
+                    <td class="text-start w-56 text-slate-600 py-1">Jurusan</td>
+                    <td>: {{ $student->major->title ?? '-' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 <!-- Content Grid -->
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-2">
     <!-- Card 1 -->

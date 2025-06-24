@@ -13,21 +13,12 @@ Route::get('/login', function () {
 Route::post('/login/auth', [App\Http\Controllers\Admin\AuthController::class, 'login'])->name('login.auth');
 Route::get('/logout/auth', [App\Http\Controllers\Admin\AuthController::class, 'logout'])->name('logout.auth');
 
-Route::get('/dashboard', function () {
-    return view('dashboard/dashboard');
-})->name('dashboard');
+Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+Route::get('/subject', [App\Http\Controllers\SubjectController::class, 'index'])->name('subject');
 
-Route::get('/subject', function () {
-    return view('subject/subject');
-})->name('subject');
+Route::get('/coursework', [App\Http\Controllers\CourseworkController::class, 'index'])->name('coursework');
 
-Route::get('/coursework', function () {
-    return view('coursework/coursework');
-})->name('coursework');
-
-Route::get('/schedule', function () {
-    return view('schedule/schedule');
-})->name('schedule');
+Route::get('/schedule', [App\Http\Controllers\ScheduleController::class, 'index'])->name('schedule');
 
 Route::get('/forum', function () {
     return view('forum/forum');
