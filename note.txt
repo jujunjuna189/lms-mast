@@ -14,3 +14,10 @@ siswa
 admin 
 - Akademik
 - keuangan
+
+
+spp = done
+register siswa = done
+Forum = to-do
+pengumuman = to-do
+Dashboard = Done
