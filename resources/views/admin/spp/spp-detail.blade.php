@@ -33,7 +33,7 @@
     <h2 class="text-center">Total SPP Yang Belum Dibayar</h2>
     <div class="mt-2 text-center">
         <div class="flex gap-2 justify-center items-center">
-            <label for="amount" class="font-bold text-2xl" data-spp="{{ $spp }}">Rp {{ $spp->amount ?? '0' }}</label>
+            <label for="amount" class="font-bold text-2xl" data-spp="{{ $spp }}">{{ $controller->formatCurrentcy($spp->amount ?? '0') }}</label>
             <div class="bg-blue-600 hover:bg-blue-700 py-1 px-2 rounded-sm text-white flex items-center gap-1 cursor-pointer open-modal" data-id="modalEditSPP">
                 <svg xmlns=" http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-pencil">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -63,7 +63,7 @@
                 <td class="px-6 py-1.5">{{ $index + 1 }}</td>
                 <td class="px-6 py-1.5 font-medium">{{ $val->date }}</td>
                 <td class="px-6 py-1.5 font-medium">{{ $val->time }}</td>
-                <td class="px-5 py-1.5">Rp {{ $val->amount }}</td>
+                <td class="px-5 py-1.5">{{ $controller->formatCurrentcy($val->amount ?? '0') }}</td>
                 <!-- <td class="px-6 py-1.5"></td> -->
             </tr>
             @endforeach

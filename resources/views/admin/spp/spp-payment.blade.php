@@ -53,7 +53,7 @@
                 @foreach($history as $val)
                 <div class="py-1">
                     <div class="px-4 py-2 rounded-md bg-slate-100 text-slate-600">
-                        <p class="text-lg font-bold">Rp {{ $val->amount }}</p>
+                        <p class="text-lg font-bold">{{ $controller->formatCurrentcy($val->amount ?? '0') }}</p>
                         <small>Tanggal Pembayaran: {{ $val->date }}</small>
                     </div>
                 </div>
@@ -79,7 +79,7 @@
                 <div class="flex gap-4">
                     <div class="mt-1">
                         <label for="" class="text-sm">Jumlah Yang Harus Dibayar</label>
-                        <div class="px-4 py-2 rounded-md bg-green-100 text-green-600 text-lg font-bold">Rp {{ $spp->amount ?? '0' }}</div>
+                        <div class="px-4 py-2 rounded-md bg-green-100 text-green-600 text-lg font-bold">{{ $controller->formatCurrentcy($spp->amount ?? '0') }}</div>
                     </div>
                     <div class="mt-2 grow">
                         <x-field.text-input name="amount" label="Masukan Nominal Uang Yang Dibayarkan" type="number" required />

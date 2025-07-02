@@ -18,6 +18,7 @@ class SPPDetailController extends Controller
         $spp = SPPModel::where('user_id', $request->user_id)->first();
         $history = SPPHistoryModel::where('user_id', $request->user_id)->get();
 
+        $data['controller'] = $this;
         $data['user'] = $user;
         $data['student'] = $student;
         $data['spp'] = $spp;

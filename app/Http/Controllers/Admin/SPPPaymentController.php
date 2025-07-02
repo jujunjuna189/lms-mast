@@ -21,6 +21,7 @@ class SPPPaymentController extends Controller
             $spp = SPPModel::where('user_id', $user->id)->first();
             $history = SPPHistoryModel::where('user_id', $user->id)->get();
 
+            $data['controller'] = $this;
             $data['user'] = $user;
             $data['student'] = $student;
             $data['spp'] = $spp;
