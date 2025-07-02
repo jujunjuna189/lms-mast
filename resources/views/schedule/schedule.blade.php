@@ -20,8 +20,6 @@
                 <option value="Jumat" <?= $filter['day'] == 'Jumat' ? 'selected' : '' ?>>Jumat</option>
                 <option value="Sabtu" <?= $filter['day'] == 'Sabtu' ? 'selected' : '' ?>>Sabtu</option>
             </select>
-
-            <button type="button" class="cursor-pointer inline-block bg-green-800 hover:bg-green-700 text-white px-4 py-1 rounded-sm font-medium text-sm transition open-modal" data-id="modalTambahJadwal">Tambah</button>
         </div>
     </div>
     <div class="overflow-x-auto bg-white rounded-sm border border-slate-200 ring-1 ring-gray-200 mt-2">

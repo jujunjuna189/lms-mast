@@ -24,6 +24,8 @@ Route::get('/forum', function () {
     return view('forum/forum');
 })->name('forum');
 
+Route::get('/spp', [App\Http\Controllers\SPPController::class, 'index'])->name('spp');
+
 
 // Admin
 Route::get('admin/dashboard', function () {

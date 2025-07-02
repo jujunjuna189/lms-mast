@@ -37,6 +37,9 @@
                         <li class="pr-5 py-2 text-white/90 flex justify-between items-center cursor-pointer" onclick="window.location.href='<?= route('forum') ?>'">
                             <div class="mr-2 hover:font-semibold"><span>Forum Diskusi</span></div>
                         </li>
+                        <li class="pr-5 py-2 text-white/90 flex justify-between items-center cursor-pointer" onclick="window.location.href='<?= route('spp') ?>'">
+                            <div class="mr-2 hover:font-semibold"><span>Keuangan</span></div>
+                        </li>
                     </ul>
                 </div>
             </div>
