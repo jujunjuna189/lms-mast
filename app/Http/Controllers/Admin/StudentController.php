@@ -58,6 +58,7 @@ class StudentController extends Controller
 
             $model = new StudentModel();
             $model->user_id = $userModel->id;
+            $model->status = 'approve';
             $model->fill($request->all());
             $model->save();
 
@@ -74,8 +75,6 @@ class StudentController extends Controller
     {
         DB::beginTransaction();
         try {
-            $uniq = $this->createUniq();
-
             $model = StudentModel::find($request->id);
             $model->fill($request->except('id'));
             $model->save();
@@ -93,10 +92,30 @@ class StudentController extends Controller
         }
     }
 
+    public function updateStatus(Request $request, $id)
+    {
+        DB::beginTransaction();
+        try {
+            $model = StudentModel::find($request->id);
+            $model->status = $request->status;
+            $model->save();
+
+            DB::commit();
+
+            return redirect()->route('admin.student');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return redirect()->route('admin.student');
+        }
+    }
+
     public function delete($id)
     {
         $model = StudentModel::find($id);
         $model->delete();
+
+        $modelUser = User::find($model->user_id);
+        $modelUser->delete();
 
         return redirect()->route('admin.student');
     }

@@ -26,11 +26,28 @@
                     <td class="px-6 py-1.5">{{ $index + 1 }}</td>
                     <td class="px-6 py-1.5">{{ $val->user->email }}</td>
                     <td class="px-6 py-1.5">{{ $val->user->name }}</td>
-                    <td class="px-6 py-1.5">{{ $val->grade->title }}</td>
-                    <td class="px-6 py-1.5">{{ $val->major->title }}</td>
+                    <td class="px-6 py-1.5">{{ $val->grade->title ?? '-' }}</td>
+                    <td class="px-6 py-1.5">{{ $val->major->title ?? '-' }}</td>
                     <td class="px-6 py-1.5 text-center">
+                        @if($val->status == 'approve')
                         <button type="button" class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-1 rounded-sm font-medium text-sm transition cursor-pointer btn-update" data-class='@json($val)'>Edit</button>
                         <button type="button" class="inline-block bg-red-600 hover:bg-red-700 text-white px-4 py-1 ml-1 rounded-sm font-medium text-sm transition cursor-pointer btn-delete" data-id='{{ $val->id }}'>Hapus</button>
+                        @elseif($val->status == 'rejected')
+                        <button type="button" class="inline-block bg-red-600 hover:bg-red-700 text-white px-4 py-1 ml-1 rounded-sm font-medium text-sm transition cursor-pointer btn-delete" data-id='{{ $val->id }}'>Hapus</button>
+                        @else
+                        <div class="flex gap-2 justify-center">
+                            <form action="{{ route('admin.student.update.status', ['id' => $val->id]) }}" method="post">
+                                @csrf
+                                <input type="text" name="status" value="approve" hidden>
+                                <button type="submit" class="inline-block bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded-sm font-medium text-sm transition cursor-pointer">Terima</button>
+                            </form>
+                            <form action="{{ route('admin.student.update.status', ['id' => $val->id]) }}" method="post">
+                                @csrf
+                                <input type="text" name="status" value="rejected" hidden>
+                                <button type="submit" class="inline-block bg-red-600 hover:bg-red-700 text-white px-4 py-1 rounded-sm font-medium text-sm transition cursor-pointer">Tolak</button>
+                            </form>
+                        </div>
+                        @endif
                     </td>
                 </tr>
                 @endforeach

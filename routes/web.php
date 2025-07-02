@@ -10,9 +10,15 @@ Route::get('/login', function () {
     return view('auth/login');
 })->name('login');
 
+Route::get('/register', function () {
+    return view('auth/register');
+})->name('register');
+
 Route::post('/login/auth', [App\Http\Controllers\Admin\AuthController::class, 'login'])->name('login.auth');
+Route::post('/register/auth', [App\Http\Controllers\Admin\AuthController::class, 'register'])->name('register.auth');
 Route::get('/logout/auth', [App\Http\Controllers\Admin\AuthController::class, 'logout'])->name('logout.auth');
 
+Route::get('/register/dashboard', [App\Http\Controllers\DashboardController::class, 'register'])->name('register.dashboard');
 Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 Route::get('/subject', [App\Http\Controllers\SubjectController::class, 'index'])->name('subject');
 
@@ -42,6 +48,7 @@ Route::get('admin/student/coursework', [App\Http\Controllers\Admin\StudentCourse
 Route::get('admin/student', [App\Http\Controllers\Admin\StudentController::class, 'index'])->name('admin.student');
 Route::post('admin/student', [App\Http\Controllers\Admin\StudentController::class, 'create'])->name('admin.student.create');
 Route::post('admin/student/{id}', [App\Http\Controllers\Admin\StudentController::class, 'update'])->name('admin.student.update');
+Route::post('admin/student-status/{id}', [App\Http\Controllers\Admin\StudentController::class, 'updateStatus'])->name('admin.student.update.status');
 Route::delete('admin/student/{id}', [App\Http\Controllers\Admin\StudentController::class, 'delete'])->name('admin.student.delete');
 
 Route::get('admin/class', [App\Http\Controllers\Admin\ClassController::class, 'index'])->name('admin.class');

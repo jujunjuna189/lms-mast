@@ -28,7 +28,7 @@
                     <button type="submit" class="w-full bg-green-800 text-white py-2 rounded-lg hover:bg-green-700 transition">Masuk</button>
                 </form>
 
-                <p class="text-sm text-gray-500 text-center mt-4">Belum punya akun? Hubungi admin sekolah.</p>
+                <p class="text-sm text-gray-500 text-center mt-4">Belum punya akun? <a href="{{ route('register') }}" class="text-blue-800 underline">Daftar</a> atau Hubungi admin sekolah.</p>
             </div>
         </div>
     </div>

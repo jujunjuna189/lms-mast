@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Admin\StudentModel;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -41,8 +43,8 @@ class AuthController extends Controller
         // Validasi input
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:100',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6|confirmed', // password_confirmation harus ada
+            'email' => 'required|unique:users,email',
+            'password' => 'required|min:6|confirmed',
         ]);
 
         if ($validator->fails()) {
@@ -52,18 +54,38 @@ class AuthController extends Controller
             ], 422);
         }
 
-        // Buat user baru
-        $user = User::create([
-            'name'     => $request->name,
-            'email'    => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        DB::beginTransaction();
+        try {
+            $userModel = new User();
+            $userModel->name = $request->name;
+            $userModel->email = $request->email;
+            $userModel->password = Hash::make($request->password);
+            $userModel->role = 'user';
+            $userModel->save();
 
-        return response()->json([
-            'status' => true,
-            'message' => 'Registrasi berhasil',
-            'user' => $user
-        ], 201);
+            $model = new StudentModel();
+            $model->user_id = $userModel->id;
+            $model->status = 'register';
+            $model->fill($request->all());
+            $model->save();
+
+            DB::commit();
+
+            if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+                $request->session()->regenerate();
+
+                $user = Auth::user();
+
+                return redirect()->intended('/register/dashboard'); // untuk user biasa
+            }
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return response()->json([
+                'status' => false,
+                'message' => 'Registrasi gagal',
+                'user' => $userModel
+            ], 201);
+        }
     }
 
     public function logout()

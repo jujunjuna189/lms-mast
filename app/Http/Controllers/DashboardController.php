@@ -18,4 +18,19 @@ class DashboardController extends Controller
 
         return view('dashboard.dashboard', $data);
     }
+
+    public function register()
+    {
+        $user = Auth::user();
+        $student = StudentModel::where('user_id', Auth::user()->id ?? null)->first();
+
+        if ($student->status == 'approve') {
+            return redirect()->route('dashboard');
+        }
+
+        $data['user'] = $user;
+        $data['student'] = $student;
+
+        return view('dashboard.dashboard-register', $data);
+    }
 }

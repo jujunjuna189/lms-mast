@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('student', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id');
-            $table->bigInteger('grade_id');
-            $table->bigInteger('major_id');
+            $table->bigInteger('grade_id')->nullable();
+            $table->bigInteger('major_id')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('status')->default('approve');
             $table->timestamps();
         });
     }

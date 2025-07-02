@@ -48,7 +48,7 @@
     <div class="w-full flex">
         <aside class="w-60 h-full bg-white border border-slate-200 hidden md:block fixed top-0 bottom-0">
             <nav class="pt-20">
-                <div class="block px-4 py-2 hover:bg-gray-200 text-sm font-semibold cursor-pointer">Dashboard</div>
+                <div class="block px-4 py-2 hover:bg-gray-200 text-sm font-semibold cursor-pointer" onclick="window.location.href='<?= route('admin.dashboard') ?>'">Dashboard</div>
                 <hr class="border border-slate-200" />
                 <div class="px-4">
                     <small class="text-[11px] font-bold text-green-800/70">DATA MASTER</small>
