@@ -19,7 +19,7 @@
                 </div>
                 <div class="flex flex-col">
                     <div class="grow">
-                        <h2 class="text-white text-xl font-bold">MAST Pakunagara</h2>
+                        <h2 class="text-white text-xl font-bold">MASTERPAK</h2>
                     </div>
                     <ul class="flex">
                         <li class="pr-5 py-2 text-white/90 flex justify-between items-center cursor-pointer" onclick="window.location.href='<?= route('dashboard') ?>'">

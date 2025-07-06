@@ -9,8 +9,8 @@
                     <img src="{{ asset('assets/logo/logo.png') }}" alt="logo" class="w-full h-full">
                 </div>
             </div>
-            <h1 class="text-xl font-bold text-center text-slate-800">Daftar Siswa MAST Pakunagara</h1>
-            <p class="text-center text-sm">Selamat datang di halaman Daftar Siswa MAST Pakunagara.</p>
+            <h1 class="text-xl font-bold text-center text-slate-800">Daftar Siswa MASTERPAK Pakunagara</h1>
+            <p class="text-center text-sm">Selamat datang di halaman Daftar Siswa MASTERPAK</p>
             <form action="{{ route('register.auth') }}" method="POST" class="space-y-4 mt-5">
                 @csrf
                 <div>

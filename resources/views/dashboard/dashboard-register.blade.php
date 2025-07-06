@@ -5,7 +5,7 @@
         <div class="">
             <div class="bg-white border border-slate-300 p-5 rounded-lg">
                 <h1 class="text-sm font-medium text-slate-500">Selamat datang di aplikasi LMS</h1>
-                <p class="text-xl font-bold text-slate-800">MAST Pakunagara</p>
+                <p class="text-xl font-bold text-slate-800">MASTERPAK</p>
             </div>
         </div>
         <div class="bg-white p-4 border border-slate-200 rounded-sm mt-2">
