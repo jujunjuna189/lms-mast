@@ -1,6 +1,6 @@
 @extends('components/layout/layout')
 @section('content')
-<div class="w-full h-screen bg-gradient-to-r from-green-100 via-green-300 to-green-600 flex items-center justify-center">
+<div class="w-full h-screen absolute top-0 botton-0 left-0 right-0 overflow-y-auto py-10 bg-gradient-to-r from-green-100 via-green-300 to-green-600 flex items-center justify-center">
     <!-- Card Login -->
     <div class="bg-white shadow-xl rounded-xl w-[50%] max-w-[50%] overflow-hidden">
         <div class="grid grid-cols-2">

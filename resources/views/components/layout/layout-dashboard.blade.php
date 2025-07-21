@@ -66,7 +66,7 @@
             <div class="px-4 py-2 text-sm text-red-600 hover:bg-red-100 cursor-pointer" onclick="window.location.href='<?= route('logout.auth') ?>'">Logout</div>
         </div>
     </div>
-    <div class="max-w-screen-xl mx-auto w-full py-5">
+    <div class="max-w-screen-xl mx-auto w-full py-5 px-10">
         @yield('content')
     </div>
 

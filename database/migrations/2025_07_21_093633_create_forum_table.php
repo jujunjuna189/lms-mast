@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('forum', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('author_id')->comment('Relation to user table');
             $table->string('title');
             $table->text('content');
+            $table->string('category')->nullable();
             $table->timestamps();
         });
     }

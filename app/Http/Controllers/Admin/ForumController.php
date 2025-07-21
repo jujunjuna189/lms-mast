@@ -10,7 +10,11 @@ class ForumController extends Controller
 {
     public function index()
     {
-        return view('admin/forum/forum');
+        $forum = ForumModel::paginate();
+
+        $data['forum'] = $forum;
+
+        return view('admin/forum/forum', $data);
     }
 
     public function create(Request $request)

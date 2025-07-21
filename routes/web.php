@@ -26,9 +26,8 @@ Route::get('/coursework', [App\Http\Controllers\CourseworkController::class, 'in
 
 Route::get('/schedule', [App\Http\Controllers\ScheduleController::class, 'index'])->name('schedule');
 
-Route::get('/forum', function () {
-    return view('forum/forum');
-})->name('forum');
+Route::get('/forum', [App\Http\Controllers\ForumController::class, 'index'])->name('forum');
+Route::post('/forum', [App\Http\Controllers\ForumController::class, 'create'])->name('forum.create');
 
 Route::get('/spp', [App\Http\Controllers\SPPController::class, 'index'])->name('spp');
 

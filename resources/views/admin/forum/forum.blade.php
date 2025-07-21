@@ -18,16 +18,27 @@
                     <th class="px-6 py-3 font-semibold text-center">Aksi</th>
                 </tr>
             </thead>
-            <tbody class="divide-y divide-gray-200">
-            </tbody>
+            @foreach($forum as $index => $val)
+            <tr class="hover:bg-gray-100">
+                <td class="px-6 py-1.5">{{ $index + 1 }}</td>
+                <td class="px-6 py-1.5 font-medium">{{ $val->title }}</td>
+                <td class="px-6 py-1.5">{{ $val->content }}</td>
+                <td class="px-6 py-1.5 text-center">
+                    <button type="button" class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-1 rounded-sm font-medium text-sm transition cursor-pointer btn-update" data-class='@json($val)'>Edit</button>
+                    <button type="button" class="inline-block bg-red-600 hover:bg-red-700 text-white px-4 py-1 ml-1 rounded-sm font-medium text-sm transition cursor-pointer btn-delete" data-id='{{ $val->id }}'>Hapus</button>
+                </td>
+            </tr>
+            @endforeach
         </table>
     </div>
 </div>
 <x-modal id="modalTambahForum" title="Tambah Forum">
-    <form id="formTambahForum" action="{{ route('admin.announcement.create') }}" method="POST">
+    <form id="formTambahForum" action="{{ route('admin.forum.create') }}" method="POST">
         @csrf
+        <input type="text" name="author_id" id="author_id" value="{{ Auth::user()->id }}" hidden>
         <x-field.text-input name="title" label="Judul" required />
         <x-field.text-input name="content" label="Konten" required />
+        <x-field.text-input name="category" label="Bidang" required />
         <x-slot:footer>
             <button form="formTambahForum" type="submit" class="bg-green-800 text-white px-4 py-1 rounded hover:bg-green-700 cursor-pointer">Simpan</button>
         </x-slot:footer>
