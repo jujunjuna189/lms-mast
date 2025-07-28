@@ -42,7 +42,7 @@
     </div>
 </div>
 <x-modal id="modalTambahTugas" title="Tambah Tugas">
-    <form id="formTambahTugas" action="{{ route('admin.coursework.create') }}" method="POST">
+    <form id="formTambahTugas" action="{{ route('admin.coursework.create') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <x-field.text-input name="title" label="Judul" required />
         <x-field.select-input
@@ -80,6 +80,8 @@
             ]"
             placeholder="-- Pilih Status --"
             required />
+
+        <x-field.text-input name="file" label="Upload File" type="file" />
 
         <x-slot:footer>
             <button form="formTambahTugas" type="submit" class="bg-green-800 text-white px-4 py-1 rounded hover:bg-green-700 cursor-pointer">Simpan</button>

@@ -61,7 +61,6 @@
                 <div class="block px-4 py-2 hover:bg-gray-200 text-sm font-semibold cursor-pointer" onclick="window.location.href='<?= route('admin.coursework') ?>'">Tugas & Ujian</div>
                 <hr class="border border-slate-200" />
                 <div class="block px-4 py-2 hover:bg-gray-200 text-sm font-semibold cursor-pointer" onclick="window.location.href='<?= route('admin.announcement') ?>'">Pengumuman</div>
-                <div class="block px-4 py-2 hover:bg-gray-200 text-sm font-semibold cursor-pointer" onclick="window.location.href='<?= route('admin.forum') ?>'">Forum Diskusi</div>
                 <hr class="border border-slate-200" />
                 <div class="px-4">
                     <small class="text-[11px] font-bold text-green-800/70">DATA SPP</small>

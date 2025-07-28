@@ -20,9 +20,19 @@
                 <tr class="hover:bg-gray-100">
                     <td class="px-6 py-1.5">{{ $index + 1 }}</td>
                     <td class="px-6 py-1.5">{{ $val->user->name }}</td>
-                    <td class="px-6 py-1.5">"-"</td>
+                    <td class="px-6 py-1.5">
+                        @if($val->work)
+                        <a href="{{ asset($val->work) }}" download="file.pdf" class="font-semibold bg-green-100 text-green-900 px-8 py-1 cursor-pointer">Unduh</a>
+                        @else
+                        <span>-</span>
+                        @endif
+                    </td>
                     <td class="px-6 py-1.5 text-center">
-                        status
+                        @if($val->status == 1)
+                        <span class="font-semibold text-green-900 px-8 py-1">Sudah Mengerjakan</span>
+                        @else
+                        <span class="font-semibold text-red-900 px-8 py-1">Belum Mengerjakan</span>
+                        @endif
                     </td>
                 </tr>
                 @endforeach

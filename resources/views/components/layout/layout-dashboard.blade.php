@@ -34,9 +34,6 @@
                         <li class="pr-5 py-2 text-white/90 flex justify-between items-center cursor-pointer" onclick="window.location.href='<?= route('schedule') ?>'">
                             <div class="mr-2 hover:font-semibold"><span>Jadwal Kelas</span></div>
                         </li>
-                        <li class="pr-5 py-2 text-white/90 flex justify-between items-center cursor-pointer" onclick="window.location.href='<?= route('forum') ?>'">
-                            <div class="mr-2 hover:font-semibold"><span>Forum Diskusi</span></div>
-                        </li>
                         <li class="pr-5 py-2 text-white/90 flex justify-between items-center cursor-pointer" onclick="window.location.href='<?= route('spp') ?>'">
                             <div class="mr-2 hover:font-semibold"><span>Keuangan</span></div>
                         </li>
@@ -52,7 +49,7 @@
                     <path d="M12 2c1.358 0 2.506 .903 2.875 2.141l.046 .171l.008 .043a8.013 8.013 0 0 1 4.024 6.069l.028 .287l.019 .289v2.931l.021 .136a3 3 0 0 0 1.143 1.847l.167 .117l.162 .099c.86 .487 .56 1.766 -.377 1.864l-.116 .006h-16c-1.028 0 -1.387 -1.364 -.493 -1.87a3 3 0 0 0 1.472 -2.063l.021 -.143l.001 -2.97a8 8 0 0 1 3.821 -6.454l.248 -.146l.01 -.043a3.003 3.003 0 0 1 2.562 -2.29l.182 -.017l.176 -.004z" />
                 </svg>
                 <div id="profile-btn" class="px-4 py-2 bg-green-700 rounded-lg flex justify-end gap-2 items-center cursor-pointer relative">
-                    <h3 class="text-white">Ikbal</h3>
+                    <h3 class="text-white">{{ Auth::user()->name }}</h3>
                     <div class="w-6 h-6 bg-green-600 rounded-full"></div>
                 </div>
             </div>
@@ -98,6 +95,7 @@
             });
         });
     </script>
+    @yield('script')
 </body>
 
 </html>

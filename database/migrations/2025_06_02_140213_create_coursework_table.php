@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('type');
             $table->string('deadline');
+            $table->text('file')->nullable();
             $table->string('status');
             $table->timestamps();
         });

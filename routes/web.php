@@ -69,6 +69,7 @@ Route::delete('admin/subject/{id}', [App\Http\Controllers\Admin\SubjectControlle
 Route::get('admin/coursework', [App\Http\Controllers\Admin\CourseWorkController::class, 'index'])->name('admin.coursework');
 Route::post('admin/coursework', [App\Http\Controllers\Admin\CourseWorkController::class, 'create'])->name('admin.coursework.create');
 Route::post('admin/coursework/{id}', [App\Http\Controllers\Admin\CourseWorkController::class, 'update'])->name('admin.coursework.update');
+Route::post('admin/coursework/upload/{id}', [App\Http\Controllers\Admin\CourseWorkController::class, 'upload'])->name('admin.coursework.upload');
 Route::delete('admin/coursework/{id}', [App\Http\Controllers\Admin\CourseWorkController::class, 'delete'])->name('admin.coursework.delete');
 
 Route::get('admin/schedule', [App\Http\Controllers\Admin\ScheduleController::class, 'index'])->name('admin.schedule');

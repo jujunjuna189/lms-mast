@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\ClassModel;
 use App\Models\Admin\CourseworkModel;
+use App\Models\Admin\StudentCourseworkModel;
 use App\Models\Admin\SubjectModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CourseWorkController extends Controller
 {
@@ -36,7 +38,14 @@ class CourseWorkController extends Controller
     public function create(Request $request)
     {
         $model = new CourseworkModel();
-        $model->fill($request->all());
+        $model->fill($request->except('file'));
+
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $path = $file->store('public/coursework'); // simpan di storage/app/public/coursework
+            $model->file = str_replace('public/', 'storage/', $path); // simpan path-nya
+        }
+
         $model->save();
 
         return redirect()->route('admin.coursework');
@@ -49,6 +58,22 @@ class CourseWorkController extends Controller
         $model->save();
 
         return redirect()->route('admin.coursework');
+    }
+
+    public function upload(Request $request, $id)
+    {
+        $model = new StudentCourseworkModel();
+        $model->user_id = Auth::user()->id;
+        $model->coursework_id = $id;
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $path = $file->store('public/coursework'); // simpan di storage/app/public/coursework
+            $model->work = str_replace('public/', 'storage/', $path); // simpan path-nya
+        }
+        $model->status = 1;
+        $model->save();
+
+        return redirect()->route('coursework');
     }
 
     public function delete($id)
