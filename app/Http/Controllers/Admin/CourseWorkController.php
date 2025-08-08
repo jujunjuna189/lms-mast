@@ -42,9 +42,13 @@ class CourseWorkController extends Controller
         $model->fill($request->except('file'));
 
         if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            $path = $file->store('public/coursework'); // simpan di storage/app/public/coursework
-            $model->file = str_replace('public/', 'storage/', $path); // simpan path-nya
+            if ($request->hasFile('file')) {
+                $file = $request->file('file');
+                $newFilename = "file_" . date('Ymdhis') . rand(10000000, 99999999) . "." . $file->getClientOriginalExtension();
+                $path = 'coursework';
+                Storage::disk('public')->putFileAs($path, $file, $newFilename);
+                $model->file = $path . '/' . $newFilename;
+            }
         }
 
         $model->save();
@@ -68,8 +72,10 @@ class CourseWorkController extends Controller
         $model->coursework_id = $id;
         if ($request->hasFile('file')) {
             $file = $request->file('file');
-            $path = $file->store('public/coursework'); // simpan di storage/app/public/coursework
-            $model->work = str_replace('public/', 'storage/', $path); // simpan path-nya
+            $newFilename = "file_" . date('Ymdhis') . rand(10000000, 99999999) . "." . $file->getClientOriginalExtension();
+            $path = 'coursework';
+            Storage::disk('public')->putFileAs($path, $file, $newFilename);
+            $model->work = $path . '/' . $newFilename;
         }
         $model->status = 1;
         $model->save();
@@ -83,10 +89,5 @@ class CourseWorkController extends Controller
         $model->delete();
 
         return redirect()->route('admin.coursework');
-    }
-
-    public function download(Request $request)
-    {
-        return Storage::download($request->path);
     }
 }

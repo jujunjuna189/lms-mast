@@ -34,7 +34,7 @@
                     <td class="px-6 py-1.5 text-center">{{ $val->deadline }}</td>
                     <td class="py-1.5 text-center">
                         @if($val->file)
-                        <a href="{{ route('admin.coursework.download', ['path' => $val->file]) }}" class="font-semibold bg-green-100 text-green-900 px-8 py-1 cursor-pointer">Unduh</a>
+                        <a href="{{ asset('storage/'. $val->file) }}" class="font-semibold bg-green-100 text-green-900 px-8 py-1 cursor-pointer">Unduh</a>
                         @else
                         <span>-</span>
                         @endif
