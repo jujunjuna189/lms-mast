@@ -43,7 +43,6 @@
                     <th class="px-5 py-3 font-semibold">Mata Pelajaran</th>
                     <th class="px-5 py-3 font-semibold">Guru</th>
                     <th class="px-5 py-3 font-semibold text-center">Kelas</th>
-                    <th class="px-5 py-3 font-semibold text-center">Ruangan</th>
                     <th class="px-6 py-3 font-semibold text-center">Aksi</th>
                 </tr>
             </thead>
@@ -56,7 +55,6 @@
                     <td class="px-5 py-1.5">{{ $val->subject->title }}</td>
                     <td class="px-5 py-1.5">{{ $val->teacher }}</td>
                     <td class="px-5 py-1.5 text-center">{{ $val->class->name }}</td>
-                    <td class="px-5 py-1.5 text-center">{{ $val->room->title }}</td>
                     <td class="px-6 py-1.5 text-center">
                         <button type="button" class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-4 py-1 rounded-sm font-medium text-sm transition cursor-pointer btn-update" data-class='@json($val)'>Edit</button>
                         <button type="button" class="inline-block bg-red-600 hover:bg-red-700 text-white px-4 py-1 ml-1 rounded-sm font-medium text-sm transition cursor-pointer btn-delete" data-id='{{ $val->id }}'>Hapus</button>
@@ -100,20 +98,18 @@
             placeholder="-- Pilih Mata Pelajaran --"
             required />
 
-        <x-field.text-input name="teacher" label="Guru" required />
+        <x-field.select-input
+            name="teacher"
+            label="Pilih Guru"
+            :options="$teacher"
+            placeholder="-- Pilih Guru --"
+            required />
 
         <x-field.select-input
             name="class_id"
             label="Pilih Kelas"
             :options="$class"
             placeholder="-- Pilih Kelas --"
-            required />
-
-        <x-field.select-input
-            name="room_id"
-            label="Pilih Ruangan"
-            :options="$room"
-            placeholder="-- Pilih Ruangan --"
             required />
 
         <x-slot:footer>
@@ -155,20 +151,18 @@
             placeholder="-- Pilih Mata Pelajaran --"
             required />
 
-        <x-field.text-input name="teacher" label="Guru" required />
+        <x-field.select-input
+            name="teacher"
+            label="Pilih Guru"
+            :options="$teacher"
+            placeholder="-- Pilih Guru --"
+            required />
 
         <x-field.select-input
             name="class_id"
             label="Pilih Kelas"
             :options="$class"
             placeholder="-- Pilih Kelas --"
-            required />
-
-        <x-field.select-input
-            name="room_id"
-            label="Pilih Ruangan"
-            :options="$room"
-            placeholder="-- Pilih Ruangan --"
             required />
 
         <x-slot:footer>
@@ -203,7 +197,7 @@
         $('#formEditJadwal input[name="time_from"]').val(data.time_from);
         $('#formEditJadwal input[name="time_to"]').val(data.time_to);
         $('#formEditJadwal select[name="subject_id"]').val(data.subject_id);
-        $('#formEditJadwal input[name="teacher"]').val(data.teacher);
+        $('#formEditJadwal select[name="teacher"]').val(data.teacher);
         $('#formEditJadwal select[name="class_id"]').val(data.class_id);
         $('#formEditJadwal select[name="room_id"]').val(data.room_id);
 

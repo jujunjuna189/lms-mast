@@ -7,6 +7,7 @@ use App\Models\Admin\ClassModel;
 use App\Models\Admin\RoomModel;
 use App\Models\Admin\ScheduleModel;
 use App\Models\Admin\SubjectModel;
+use App\Models\Admin\TeacherModel;
 use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
@@ -19,12 +20,18 @@ class ScheduleController extends Controller
             $query->where('class_id', $request->class);
         })->paginate();
         $subject = SubjectModel::all();
+        $teacher = TeacherModel::all();
         $class = ClassModel::all();
         $room = RoomModel::all();
 
         $subjects = [];
         foreach ($subject as $val) {
             $subjects[$val->id] = $val->title;
+        }
+
+        $teachers = [];
+        foreach ($teacher as $val) {
+            $teachers[$val->full_name] = $val->full_name;
         }
 
         $classs = [];
@@ -41,6 +48,7 @@ class ScheduleController extends Controller
         $data['filter']['class'] = isset($request->class) ? $request->class : 'Semua';
         $data['schedule'] = $schedule;
         $data['subject'] = $subjects;
+        $data['teacher'] = $teachers;
         $data['class'] = $classs;
         $data['room'] = $rooms;
 

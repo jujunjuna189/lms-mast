@@ -50,6 +50,12 @@ Route::post('admin/student/{id}', [App\Http\Controllers\Admin\StudentController:
 Route::post('admin/student-status/{id}', [App\Http\Controllers\Admin\StudentController::class, 'updateStatus'])->name('admin.student.update.status');
 Route::delete('admin/student/{id}', [App\Http\Controllers\Admin\StudentController::class, 'delete'])->name('admin.student.delete');
 
+Route::get('admin/teacher', [App\Http\Controllers\Admin\TeacherController::class, 'index'])->name('admin.teacher');
+Route::post('admin/teacher', [App\Http\Controllers\Admin\TeacherController::class, 'create'])->name('admin.teacher.create');
+Route::post('admin/teacher/{id}', [App\Http\Controllers\Admin\TeacherController::class, 'update'])->name('admin.teacher.update');
+Route::post('admin/teacher-status/{id}', [App\Http\Controllers\Admin\TeacherController::class, 'updateStatus'])->name('admin.teacher.update.status');
+Route::delete('admin/teacher/{id}', [App\Http\Controllers\Admin\TeacherController::class, 'delete'])->name('admin.teacher.delete');
+
 Route::get('admin/class', [App\Http\Controllers\Admin\ClassController::class, 'index'])->name('admin.class');
 Route::post('admin/class', [App\Http\Controllers\Admin\ClassController::class, 'create'])->name('admin.class.create');
 Route::post('admin/class/{id}', [App\Http\Controllers\Admin\ClassController::class, 'update'])->name('admin.class.update');
@@ -70,6 +76,7 @@ Route::post('admin/coursework', [App\Http\Controllers\Admin\CourseWorkController
 Route::post('admin/coursework/{id}', [App\Http\Controllers\Admin\CourseWorkController::class, 'update'])->name('admin.coursework.update');
 Route::post('admin/coursework/upload/{id}', [App\Http\Controllers\Admin\CourseWorkController::class, 'upload'])->name('admin.coursework.upload');
 Route::delete('admin/coursework/{id}', [App\Http\Controllers\Admin\CourseWorkController::class, 'delete'])->name('admin.coursework.delete');
+Route::get('admin/coursework/download', [App\Http\Controllers\Admin\CourseWorkController::class, 'download'])->name('admin.coursework.download');
 
 Route::get('admin/schedule', [App\Http\Controllers\Admin\ScheduleController::class, 'index'])->name('admin.schedule');
 Route::post('admin/schedule', [App\Http\Controllers\Admin\ScheduleController::class, 'create'])->name('admin.schedule.create');

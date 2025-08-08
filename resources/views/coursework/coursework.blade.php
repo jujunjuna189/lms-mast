@@ -29,13 +29,12 @@
                 <tr class="hover:bg-gray-50">
                     <td class="px-6 py-1.5">{{ $index + 1 }}</td>
                     <td class="px-6 py-1.5 font-medium">{{ $val->title }}</td>
-                    <!-- <td class="px-5 py-1.5">{{ $val->class->name ?? '' }}</td> -->
                     <td class="px-6 py-1.5">{{ $val->subject->title ?? '' }}</td>
                     <td class="px-6 py-1.5 text-center">{{ $val->type }}</td>
                     <td class="px-6 py-1.5 text-center">{{ $val->deadline }}</td>
                     <td class="py-1.5 text-center">
                         @if($val->file)
-                        <a href="{{ asset($val->file) }}" download="file.pdf" class="font-semibold bg-green-100 text-green-900 px-8 py-1 cursor-pointer">Unduh</a>
+                        <a href="{{ route('admin.coursework.download', ['path' => $val->file]) }}" class="font-semibold bg-green-100 text-green-900 px-8 py-1 cursor-pointer">Unduh</a>
                         @else
                         <span>-</span>
                         @endif

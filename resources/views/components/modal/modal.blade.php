@@ -12,7 +12,7 @@
         </div>
 
         <!-- Body -->
-        <div class="p-4">
+        <div class="p-4 max-h-[80vh] overflow-y-auto">
             {{ $slot }}
         </div>
 

@@ -32,7 +32,6 @@
                     <th class="px-5 py-3 font-semibold">Mata Pelajaran</th>
                     <th class="px-5 py-3 font-semibold">Guru</th>
                     <th class="px-5 py-3 font-semibold text-center">Kelas</th>
-                    <th class="px-5 py-3 font-semibold text-center">Ruangan</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200">
@@ -49,7 +48,6 @@
                     <td class="px-5 py-1.5">{{ $val->subject->title ?? '' }}</td>
                     <td class="px-5 py-1.5">{{ $val->teacher }}</td>
                     <td class="px-5 py-1.5 text-center">{{ $val->class->name ?? '' }}</td>
-                    <td class="px-5 py-1.5 text-center">{{ $val->room->title ?? '' }}</td>
                 </tr>
                 @endforeach
             </tbody>

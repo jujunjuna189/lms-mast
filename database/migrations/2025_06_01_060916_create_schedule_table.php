@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('class_id');
             $table->bigInteger('subject_id');
-            $table->bigInteger('room_id');
+            $table->bigInteger('room_id')->nullable();
             $table->string('day');
             $table->string('time_from');
             $table->string('time_to');

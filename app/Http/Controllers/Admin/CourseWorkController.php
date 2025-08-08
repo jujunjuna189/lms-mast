@@ -9,6 +9,7 @@ use App\Models\Admin\StudentCourseworkModel;
 use App\Models\Admin\SubjectModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class CourseWorkController extends Controller
 {
@@ -82,5 +83,10 @@ class CourseWorkController extends Controller
         $model->delete();
 
         return redirect()->route('admin.coursework');
+    }
+
+    public function download(Request $request)
+    {
+        return Storage::download($request->path);
     }
 }

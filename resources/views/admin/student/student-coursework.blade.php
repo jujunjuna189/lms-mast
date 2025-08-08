@@ -22,7 +22,7 @@
                     <td class="px-6 py-1.5">{{ $val->user->name }}</td>
                     <td class="px-6 py-1.5">
                         @if($val->work)
-                        <a href="{{ asset($val->work) }}" download="file.pdf" class="font-semibold bg-green-100 text-green-900 px-8 py-1 cursor-pointer">Unduh</a>
+                        <a href="{{ route('admin.coursework.download', ['path' => $val->work]) }}" class="font-semibold bg-green-100 text-green-900 px-8 py-1 cursor-pointer">Unduh</a>
                         @else
                         <span>-</span>
                         @endif
